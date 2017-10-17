@@ -8,7 +8,7 @@ const objectAssign = require('object-assign')
 const _ = require('lodash')
 
 const getAbcConfig = (() => {
-  const abcConfigPath = path.resolve(process.cwd() + '/abc.js')
+  const abcConfigPath = path.resolve(process.cwd() + '/.webpackrc')
   const defaultConfig = {
     "port": 8080,
     "entry": {},
@@ -17,7 +17,8 @@ const getAbcConfig = (() => {
     "plugins": [],
     "alias": [],
     "babelOptions": {},
-    "htmlTemplateUrl": ""
+    "htmlTemplateUrl": "",
+    "publicPath": "./"
   }
   let abcConfig = null
 
@@ -40,7 +41,7 @@ const getBabelOptions = (config) => {
       require.resolve('babel-preset-stage-0')
     ],
     "plugins": [
-      
+      require.resolve("babel-plugin-transform-runtime")
     ],
     "env": {
       "development": {

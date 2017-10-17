@@ -41,7 +41,7 @@ rules.push({
   })
 })
 
-output.publicPath = './'
+output.publicPath = abcConfig.publicPath
 
 plugins.push(new webpack.DefinePlugin({__dev__: false}), new ExtractTextPlugin('[name].css'), new webpack.optimize.UglifyJsPlugin({
   compress: {
