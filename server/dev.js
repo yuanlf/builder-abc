@@ -17,7 +17,7 @@ const app = new Koa()
 const port = abcConfig.port
 
 app.use(devMiddleware(compile, {
-  noInfo: false,
+  noInfo: true,
   reload: true,
   stats: {
 		colors: true

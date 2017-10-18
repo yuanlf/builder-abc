@@ -8,7 +8,7 @@ const objectAssign = require('object-assign')
 const _ = require('lodash')
 
 const getAbcConfig = (() => {
-  const abcConfigPath = path.resolve(process.cwd() + '/.webpackrc')
+  const abcConfigPath = path.resolve(process.cwd() + '/.abcrc')
   const defaultConfig = {
     "port": 8080,
     "entry": {},
@@ -18,6 +18,7 @@ const getAbcConfig = (() => {
     "alias": [],
     "babelOptions": {},
     "htmlTemplateUrl": "",
+    "devtool": "eval-source-map",
     "publicPath": "./"
   }
   let abcConfig = null
@@ -36,12 +37,24 @@ const getBabelOptions = (config) => {
     "babelrc": false,
     "cacheDirectory": false,
     "presets": [
-      require.resolve('babel-preset-es2015'),
-      require.resolve('babel-preset-react'),
-      require.resolve('babel-preset-stage-0')
+      [require.resolve('babel-preset-env'), {
+        "node": "current",
+        "targets": {
+          "browsers": [
+            '>5%',
+            'last 4 versions',
+            'Firefox ESR',
+            'ie > 8'
+          ]
+        }
+      }],
+      require.resolve('babel-preset-react')
     ],
     "plugins": [
-      require.resolve("babel-plugin-transform-runtime")
+      require.resolve("babel-plugin-transform-runtime"),
+      require.resolve("babel-plugin-transform-class-properties"),
+      require.resolve("babel-plugin-add-module-exports"),
+      require.resolve("babel-plugin-transform-object-rest-spread")
     ],
     "env": {
       "development": {
@@ -58,7 +71,7 @@ const getPostCssOptions = (config) => {
     plugins: [
       require('autoprefixer')({
         browsers: [
-          '>1%',
+          '>5%',
           'last 4 versions',
           'Firefox ESR',
           'ie > 8'

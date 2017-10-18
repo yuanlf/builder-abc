@@ -9,8 +9,7 @@ const path = require('path')
 const webpack = require('webpack')
 const autoprefixer = require('autoprefixer')
 const objectAssign = require('object-assign')
-
-const SimpleProgressWebpackPlugin = require('simple-progress-webpack-plugin')
+const SimpleProgressWebpackPlugin = require( 'customized-progress-webpack-plugin' )
 
 const utils = require('../utils')
 const paths = utils.paths
@@ -86,9 +85,7 @@ module.exports = {
         context: paths.appRootPath
       }
     }),
-    new SimpleProgressWebpackPlugin({
-      format: 'compact'
-    })
+    new SimpleProgressWebpackPlugin()
   ].concat(abcConfig.plugins),
   resolve: {
     modules: [

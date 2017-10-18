@@ -46,7 +46,7 @@ rules.push({
 })
 
 // sourcemap配置，方便本地调试用
-config.devtool = 'eval-source-map'
+config.devtool = abcConfig.devtool
 
 plugins.push(new webpack.DefinePlugin({
   __dev__: true,
