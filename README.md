@@ -1,11 +1,15 @@
 # builder-webpack
 > 一个基于webpack的构建器，用户无需关心webpack配置，通过简单配置即可进行本地调试和线上打包
 
+![dev](http://img.daily.taobaocdn.net/tps/TB1qKPhXow7LKJjyzdKXXaShXXa-2546-1448.gif)
+
+![build](http://img.daily.taobaocdn.net/tps/TB1quPhXow7LKJjyzdKXXaShXXa-2556-1380.gif)
+
 # 安装
 ```
-yarn add builder-abc --dev
+yarn add builder-abc -g
 或者
-npm install builder-abc --save-dev
+npm install builder-abc -g
 ```
 
 ### 基本配置
@@ -40,4 +44,15 @@ abc build
 "htmlTemplateUrl": "", // 页面启动页默认配置，一般需要覆盖配置
 "devtool": "eval-source-map", // soucemap配置，开发模式下使用，默认：eval-source-map
 "publicPath": "./" // 打包资源中的静态路径配置，默认：”./“
+```
+
+### 常见问题
+* libpng issues
+Installing on some versions of OSX may raise errors with a missing libpng dependency:
+```
+Module build failed: Error: dyld: Library not loaded: /usr/local/opt/libpng/lib/libpng16.16.dylib
+```
+This can be remedied by installing the newest version of libpng with homebrew:
+```
+brew install libpng
 ```
