@@ -7,7 +7,7 @@
 
 # 安装
 ```
-yarn add builder-abc -g
+yarn global add builder-abc
 或者
 npm install builder-abc -g
 ```
