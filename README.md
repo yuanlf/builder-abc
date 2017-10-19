@@ -1,4 +1,4 @@
-# builder-webpack
+# builder-abc
 > 一个基于webpack的构建器，用户无需关心webpack配置，通过简单配置即可进行本地调试和线上打包
 
 ![dev](http://img.daily.taobaocdn.net/tps/TB1qKPhXow7LKJjyzdKXXaShXXa-2546-1448.gif)
