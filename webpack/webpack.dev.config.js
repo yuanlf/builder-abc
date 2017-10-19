@@ -23,7 +23,7 @@ const port = abcConfig.port
 config.entry = JSON.stringify(abcConfig.entry) === '{}' || !abcConfig.entry
   ? {
     app: [
-      'eventsource-polyfill', 'webpack-hot-middleware/client?noInfo=true&reload=true', path.resolve(__dirname, '..') + '/index.js'
+      'eventsource-polyfill', 'webpack-hot-middleware/client?noInfo=true&reload=true', './demo/index.js'
     ]
   }
   : utils.getDevEntry(abcConfig.entry)

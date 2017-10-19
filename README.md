@@ -1,6 +1,13 @@
 # builder-webpack
 > 一个基于webpack的构建器，用户无需关心webpack配置，通过简单配置即可进行本地调试和线上打包
 
+# 安装
+```
+yarn add builder-abc --dev
+或者
+npm install builder-abc --save-dev
+```
+
 ### 基本配置
 * 项目根目录新增 **.abcrc** 文件，大部分的场景下，只需要简单配置，比如：
 ``` json
