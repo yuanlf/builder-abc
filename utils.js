@@ -6,6 +6,7 @@
 const path = require('path')
 const objectAssign = require('object-assign')
 const _ = require('lodash')
+const fs = require('fs')
 
 const getAbcConfig = (() => {
   const abcConfigPath = path.resolve(process.cwd() + '/.abcrc')
@@ -19,12 +20,13 @@ const getAbcConfig = (() => {
     "babelOptions": {},
     "htmlTemplateUrl": "",
     "devtool": "eval-source-map",
-    "publicPath": "./"
+    "publicPath": "./",
+    "proxy": {}
   }
   let abcConfig = null
 
   try {
-    abcConfig = objectAssign(defaultConfig, require(abcConfigPath))
+    abcConfig = objectAssign(defaultConfig, JSON.parse(fs.readFileSync(abcConfigPath).toString()))
   } catch(err) {
     abcConfig = defaultConfig
   }
@@ -103,10 +105,51 @@ const getDevEntry = (entry) => {
   return entry
 }
 
+/**
+ * 处理代理配置
+ * @param {Object} proxyConfig 
+ * 
+ * proxyConfig = {
+ *  '/ecs': 'https://api.aliyun.com/',
+ *  '/example/:id': params => {
+ *     return {
+ *       target: 'http://localhost:8000',
+ *       logs: true,
+ *       headers: {
+ *         'X_HOST_S': 'google.com'
+ *       }
+ *     }
+ *   }
+ * }
+ */
+const getProxyConfig= () => {
+  const result = []
+  const proxyConfig = getAbcConfig.proxy
+
+  _.keys(proxyConfig).forEach(context => {
+    let options = proxyConfig[context]
+    if (typeof options === 'string') {
+      options = {
+        target: options,
+        changeOrigin: true,
+        logs: true
+      }
+    }
+    
+    result.push({
+      context,
+      options
+    })
+  })
+  
+  return result
+}
+
 module.exports = {
   getBabelOptions,
   getPostCssOptions,
   paths,
   getAbcConfig,
-  getDevEntry
+  getDevEntry,
+  getProxyConfig
 }

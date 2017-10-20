@@ -43,7 +43,8 @@ abc build
 "babelOptions": {}, // babel选项配置
 "htmlTemplateUrl": "", // 页面启动页默认配置，一般需要覆盖配置
 "devtool": "eval-source-map", // soucemap配置，开发模式下使用，默认：eval-source-map
-"publicPath": "./" // 打包资源中的静态路径配置，默认：”./“
+"publicPath": "./", // 打包资源中的静态路径配置，默认：”./“,
+"proxy": {} // 代理设置，比如：{ '/api': 'http://www.aliyun.com/mocks', 'example/:id': (params) => return { target: 'http://localhost:8080/', logs: true } }
 ```
 
 ### 常见问题
