@@ -21,6 +21,7 @@ module.exports = {
   output: objectAssign({
     path: paths.appRootPath + '/build',
     filename: '[name].js',
+    publicPath: './'
   }, abcConfig.output),
   module: {
     rules: [

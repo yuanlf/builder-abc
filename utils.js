@@ -20,7 +20,6 @@ const getAbcConfig = (() => {
     "babelOptions": {},
     "htmlTemplateUrl": "",
     "devtool": "eval-source-map",
-    "publicPath": "./",
     "proxy": {}
   }
   let abcConfig = null

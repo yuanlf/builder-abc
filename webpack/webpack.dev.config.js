@@ -22,7 +22,7 @@ const port = abcConfig.port
 
 config.entry = JSON.stringify(abcConfig.entry) === '{}' || !abcConfig.entry
   ? {
-    app: [
+    index: [
       'eventsource-polyfill', 'webpack-hot-middleware/client?noInfo=true&reload=true', './demo/index.js'
     ]
   }

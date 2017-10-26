@@ -9,6 +9,7 @@ const co = require('co')
 const chalk = require('chalk')
 const pkg = require('../package.json')
 const shell = require('shelljs')
+const argv = require('yargs').argv
 
 function onError(err) {
   console.log('[Error]')
@@ -25,7 +26,7 @@ program
   .description('webpack项目构建器')
   .action(cmd => {
     const availableCommands = ['dev', 'build']
-
+    
     if (availableCommands.indexOf(cmd) === -1) {
       program.help()
       process.exit(1)
@@ -34,7 +35,8 @@ program
         case 'dev':
         case 'build':
           const filePath = require.resolve('../server/' + cmd)
-          shell.exec(`node ${filePath}`)
+          // 需要透传命令行参数
+          shell.exec(`node ${filePath} ${process.argv.join(' ')}`)
           break
         default:
           break

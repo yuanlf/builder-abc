@@ -32,19 +32,44 @@ abc dev
 abc build
 ```
 
-### 高阶配置 - 完整的配置文件（.abcrc）说明
+### 高阶配置 - 完整的配置文件（.abcrc）说明，必须是一个标准的JSON格式文件
 ```json
-"port": 8080, // 服务器端口配置，默认8080
-"entry": {}, // 入口文件配置，一般需要覆盖配置，比如：entry: { app: './index.js' }
-"output": {}, // 输出配置，默认：{ path: './build', filename: '[name].js' }
-"rules": [], // loader配置，配置方式：[{ test: /\.js$/, use: ['babel'] }]
-"plugins": [], // 插件配置
-"alias": [], // 别名配置，配置方式：{ component: 'xx/xx/component' }
-"babelOptions": {}, // babel选项配置
-"htmlTemplateUrl": "", // 页面启动页默认配置，一般需要覆盖配置
-"devtool": "eval-source-map", // soucemap配置，开发模式下使用，默认：eval-source-map
-"publicPath": "./", // 打包资源中的静态路径配置，默认：”./“,
-"proxy": {} // 代理设置，比如：{ '/api': 'http://www.aliyun.com/mocks', 'example/:id': (params) => return { target: 'http://localhost:8080/', logs: true } }
+{
+  "port": 8080, // 服务器端口配置，默认8080
+  "entry": {}, // 入口文件配置，一般需要覆盖配置，比如：entry: { app: './index.js' }
+  "output": {}, // 输出配置，默认：{ path: './build', filename: '[name].js' }
+  "rules": [], // loader配置，配置方式：[{ test: /\.js$/, use: ['babel'] }]
+  "plugins": [], // 插件配置
+  "alias": [], // 别名配置，配置方式：{ component: 'xx/xx/component' }
+  "babelOptions": {}, // babel选项配置
+  "htmlTemplateUrl": "", // 页面启动页默认配置，一般需要覆盖配置
+  "devtool": "eval-source-map", // soucemap配置，开发模式下使用，默认：eval-source-map
+  "proxy": {} // 代理设置，比如：{ '/api': 'http://www.aliyun.com/mocks', 'example/:id': (params) => return { target: 'http://localhost:8080/', logs: true } }
+}
+```
+
+### 一些典型的配置
+* 指定入口和模板路径，以及设置代理
+```json
+{
+  "entry": {
+    "app": "./src/index.js"
+  },
+  "htmlTemplateUrl": "./index.html",
+  "proxy": {
+    "/api": "http://www.aliyun.com/mocks"
+  }
+}
+```
+* 打包成类库或者umd格式的代码
+```json
+{
+  "output": {
+    "libraryTarget": "umd",
+    "umdNamedDefine": true,
+    "libraryExport": "default"
+  }
+}
 ```
 
 ### 常见问题

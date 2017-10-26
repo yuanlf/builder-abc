@@ -1,6 +1,6 @@
 {
   "name": "builder-abc",
-  "version": "1.0.5",
+  "version": "1.0.8",
   "description": "一个基于webpack的构建器",
   "main": "index.js",
   "bin": {
@@ -41,6 +41,7 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-react-hmre": "^1.1.1",
+    "babel-runtime": "^6.26.0",
     "chalk": "^2.1.0",
     "co": "^4.6.0",
     "commander": "^2.11.0",
@@ -65,6 +66,7 @@
     "rimraf": "^2.6.2",
     "shelljs": "^0.7.8",
     "style-loader": "^0.18.2",
-    "webpack": "^3.6.0"
+    "webpack": "^3.6.0",
+    "yargs": "^10.0.3"
   }
 }
