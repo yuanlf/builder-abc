@@ -21,7 +21,7 @@ const OpenBrowserPlugin = require('open-browser-webpack-plugin')
 const port = abcConfig.port
 
 // 没有配置 entry 的情况下，开发时默认启动 demo 环境，方便本地调试
-config.entry = JSON.stringify(abcConfig.entry) === '{}'? { 'index': './demo/index.js'} :  utils.getDevEntry(abcConfig.entry)
+config.entry = JSON.stringify(abcConfig.entry) === '{}' ? { 'index': ['eventsource-polyfill', 'webpack-hot-middleware/client?noInfo=true&reload=true', './demo/index.js'] } :  utils.getDevEntry(abcConfig.entry)
 
 rules.push({
   test: /\.css$/,
