@@ -8,15 +8,25 @@ const objectAssign = require('object-assign')
 const _ = require('lodash')
 const fs = require('fs')
 
+const paths = {
+  builderNodeModulePath: path.resolve(__dirname, './node_modules'),
+  appNodeModulePath: path.resolve(process.cwd(), './node_modules'),
+  appRootPath: path.resolve(process.cwd())
+}
+
 const getAbcConfig = (() => {
-  const abcConfigPath = path.resolve(process.cwd() + '/.abcrc')
   const defaultConfig = {
     "port": 8080,
     "entry": {},
-    "output": {},
+    "output": {
+      path: paths.appRootPath + '/build',
+      filename: '[name].js',
+      publicPath: './'
+    },
     "rules": [],
     "plugins": [],
     "alias": [],
+    "externals": [],
     "babelOptions": {},
     "htmlTemplateUrl": "",
     "devtool": "eval-source-map",
@@ -25,9 +35,22 @@ const getAbcConfig = (() => {
   let abcConfig = null
 
   try {
+    // 优先取 .abcrc 中的配置，必须 json 格式
+    const abcConfigPath = path.resolve(process.cwd() + '/.abcrc')
     abcConfig = objectAssign(defaultConfig, JSON.parse(fs.readFileSync(abcConfigPath).toString()))
   } catch(err) {
-    abcConfig = defaultConfig
+    try {
+      // 然后取 abc.json 中的配置
+      const abc = require(process.cwd() + '/abc.json')
+      abcConfig = objectAssign(defaultConfig, abc)
+
+      // 如果使用的是 generator 生成的组件，默认配置 umd 打包
+      abcConfig.output.library = abc.name
+      abcConfig.output.libraryTarget = 'umd'
+    } catch(err) {
+      // 否则使用默认配置
+      abcConfig = defaultConfig
+    }
   }
 
   return abcConfig
@@ -80,12 +103,6 @@ const getPostCssOptions = (config) => {
       })
     ]
   }
-}
-
-const paths = {
-  builderNodeModulePath: path.resolve(__dirname, './node_modules'),
-  appNodeModulePath: path.resolve(process.cwd(), './node_modules'),
-  appRootPath: path.resolve(process.cwd())
 }
 
 const getDevEntry = (entry) => {

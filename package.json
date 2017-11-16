@@ -1,6 +1,6 @@
 {
   "name": "builder-abc",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "一个基于webpack的构建器",
   "main": "index.js",
   "bin": {
@@ -24,6 +24,9 @@
     "name": "langford",
     "email": "langford@126.com"
   },
+  "contributors": [
+    "langford@126.com"
+  ],
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/yuanlf/builder-abc/issues"

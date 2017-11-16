@@ -18,11 +18,7 @@ const cwd = process.cwd()
 
 module.exports = {
   entry: abcConfig.entry,
-  output: objectAssign({
-    path: paths.appRootPath + '/build',
-    filename: '[name].js',
-    publicPath: './'
-  }, abcConfig.output),
+  output: abcConfig.output,
   module: {
     rules: [
       {

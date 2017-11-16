@@ -20,16 +20,21 @@ const OpenBrowserPlugin = require('open-browser-webpack-plugin')
 
 const port = abcConfig.port
 
-config.entry = JSON.stringify(abcConfig.entry) === '{}' || !abcConfig.entry
-  ? {
-    index: [
-      'eventsource-polyfill', 'webpack-hot-middleware/client?noInfo=true&reload=true', './demo/index.js'
-    ]
-  }
-  : utils.getDevEntry(abcConfig.entry)
+// 没有配置 entry 的情况下，开发时默认启动 demo 环境，方便本地调试
+config.entry = JSON.stringify(abcConfig.entry) === '{}'? { 'index': './demo/index.js'} :  utils.getDevEntry(abcConfig.entry)
 
 rules.push({
-  test: /\.(css|less)$/,
+  test: /\.css$/,
+  use: [
+    'style',
+    'css', 
+    {
+      loader: 'postcss',
+      options: utils.getPostCssOptions()
+    }
+  ]
+}, {
+  test: /\.less$/,
   use: [
     'style', {
       loader: 'css',
@@ -37,25 +42,31 @@ rules.push({
         modules: false
       }
     },
-    'less', {
+    'less', 
+    {
       loader: 'postcss',
       options: utils.getPostCssOptions()
     }
-  ],
-  exclude: /node_modules/
+  ]
 })
 
 // sourcemap配置，方便本地调试用
 config.devtool = abcConfig.devtool
 
-plugins.push(new webpack.DefinePlugin({
-  __dev__: true,
-  'process.env.NODE_ENV': JSON.stringify('development')
-}), new HtmlWebpackPlugin({
-  template: abcConfig.htmlTemplateUrl
-    ? abcConfig.htmlTemplateUrl
-    : path.resolve(__dirname, '..') + '/index.tmpl.html',
-  inject: 'body'
-}), new webpack.HotModuleReplacementPlugin(), new webpack.NamedModulesPlugin(), new OpenBrowserPlugin({url: `http://localhost:${port}`}))
+plugins.push(
+  new webpack.DefinePlugin({
+    __dev__: true,
+    'process.env.NODE_ENV': JSON.stringify('development')
+  }), 
+  new HtmlWebpackPlugin({
+    template: abcConfig.htmlTemplateUrl
+      ? abcConfig.htmlTemplateUrl
+      : path.resolve(__dirname, '..') + '/index.tmpl.html',
+    inject: 'body'
+  }), 
+  new webpack.HotModuleReplacementPlugin(), 
+  new webpack.NamedModulesPlugin(), 
+  new OpenBrowserPlugin({url: `http://localhost:${port}`})
+)
 
 module.exports = config

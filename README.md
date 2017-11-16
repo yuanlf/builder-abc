@@ -1,9 +1,9 @@
 # builder-abc
 > 一个基于webpack的构建器，用户无需关心webpack配置，通过简单配置即可进行本地调试和线上打包
 
-![dev](http://img.daily.taobaocdn.net/tps/TB1qKPhXow7LKJjyzdKXXaShXXa-2546-1448.gif)
+![dev](https://img.alicdn.com/tfs/TB1mUNfdvDH8KJjy1XcXXcpdXXa-2546-1448.gif)
 
-![build](http://img.daily.taobaocdn.net/tps/TB1quPhXow7LKJjyzdKXXaShXXa-2556-1380.gif)
+![build](https://img.alicdn.com/tfs/TB1E3EVdlfH8KJjy1XbXXbLdXXa-2556-1380.gif)
 
 # 安装
 ```
@@ -13,7 +13,7 @@ npm install builder-abc -g
 ```
 
 ### 基本配置
-* 项目根目录新增 **.abcrc** 文件，大部分的场景下，只需要简单配置，比如：
+* 项目根目录新增 **.abcrc** 文件 (必须是严格的 json 格式)，大部分的场景下，只需要简单配置，比如：
 ``` json
 {
   port: 8000
@@ -23,7 +23,7 @@ npm install builder-abc -g
   htmlTemplateUrl: './index.html'
 }
 ```
-* 本地开发调试 - 启动调式服务器，启动的服务器默认拥有hmr功能
+* 本地开发调试 - 启动调式服务器，启动的服务器默认拥有 hmr 功能
 ```
 abc dev
 ```
@@ -58,16 +58,6 @@ abc build
   "htmlTemplateUrl": "./index.html",
   "proxy": {
     "/api": "http://www.aliyun.com/mocks"
-  }
-}
-```
-* 打包成类库或者umd格式的代码
-```json
-{
-  "output": {
-    "libraryTarget": "umd",
-    "umdNamedDefine": true,
-    "libraryExport": "default"
   }
 }
 ```
