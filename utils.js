@@ -74,7 +74,7 @@ const getBabelOptions = (config) => {
       require.resolve('babel-preset-react')
     ],
     "plugins": [
-      require.resolve("babel-plugin-transform-runtime"),
+      // require.resolve("babel-plugin-transform-runtime"),
       require.resolve("babel-plugin-transform-class-properties"),
       require.resolve("babel-plugin-add-module-exports"),
       require.resolve("babel-plugin-transform-object-rest-spread")
