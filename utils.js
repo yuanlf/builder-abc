@@ -62,7 +62,6 @@ const getBabelOptions = (config) => {
     "cacheDirectory": false,
     "presets": [
       [require.resolve('babel-preset-env'), {
-        "node": "current",
         "targets": {
           "browsers": [
             '>5%',
