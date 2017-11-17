@@ -1,6 +1,6 @@
 {
   "name": "builder-abc",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "一个基于webpack的构建器",
   "main": "index.js",
   "bin": {
@@ -40,6 +40,7 @@
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-react-hmre": "^1.1.1",
