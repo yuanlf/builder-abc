@@ -47,7 +47,7 @@ if (argv.buildTo) {
 plugins.push(
   new webpack.DefinePlugin({
     __dev__: false,
-    'process.env.NODE_ENV': '"production"'
+    'process.env.NODE_ENV': JSON.stringify('production')
   }), 
   new ExtractTextPlugin('[name].css'),
   new webpack.optimize.UglifyJsPlugin({
@@ -59,24 +59,32 @@ plugins.push(
   })
  )
 
-const reactExternal = {
-  root: 'React',
-  commonjs2: 'react',
-  commonjs: 'react',
-  amd: 'react'
-}
+// const reactExternal = {
+//   root: 'React',
+//   commonjs2: 'react',
+//   commonjs: 'react',
+//   amd: 'react'
+// }
 
-const reactDOMExternal = {
-  root: 'ReactDOM',
-  commonjs2: 'react-dom',
-  commonjs: 'react-dom',
-  amd: 'react-dom'
-}
+// const reactDOMExternal = {
+//   root: 'ReactDOM',
+//   commonjs2: 'react-dom',
+//   commonjs: 'react-dom',
+//   amd: 'react-dom'
+// }
+
+// const windExternal = {
+//   root: 'wind',
+//   commonjs2: '@ali/wind',
+//   commonjs: '@ali/wind',
+//   amd: '@ali/wind'
+// }
 
 // 默认不打包 react 以及 react-dom 模块
 config.externals = objectAssign({
-  react: reactExternal,
-  'react-dom': reactDOMExternal
+  // react: reactExternal,
+  // 'react-dom': reactDOMExternal,
+  // '@ali/wind': windExternal
 }, abcConfig.externals)
 
 module.exports = config

@@ -36,7 +36,8 @@ rules.push({
 }, {
   test: /\.less$/,
   use: [
-    'style', {
+    'style',
+    {
       loader: 'css',
       options: {
         modules: false
