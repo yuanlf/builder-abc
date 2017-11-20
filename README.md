@@ -5,6 +5,15 @@
 
 ![build](https://img.alicdn.com/tfs/TB1E3EVdlfH8KJjy1XbXXbLdXXa-2556-1380.gif)
 
+# 默认支持
+* 支持 less，postcss，autoprefixer
+* 支持 ts
+* 支持 react
+* 支持 es6 语法
+* 开发模式支持 hmr
+* 直接接口代理
+* 基于 koa 2 版本启动的服务器
+
 # 安装
 ```
 yarn global add builder-abc

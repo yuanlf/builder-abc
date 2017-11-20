@@ -63,6 +63,21 @@ module.exports = {
             }
           }
         ]
+      }, {
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'babel',
+            options: utils.getBabelOptions({}),
+          },
+          {
+            loader: 'awesome-typescript',
+            options: {
+              transpileOnly: true,
+            },
+          },
+        ],
       }
     ].concat(abcConfig.rules)
   },
@@ -87,10 +102,11 @@ module.exports = {
   resolve: {
     modules: [
       paths.builderNodeModulePath,
-      paths.appNodeModulePath
+      paths.appNodeModulePath,
+      'node_modules'
     ],
     extensions: [
-      '.js', '.json'
+      '.js', '.json', '.jsx', '.ts', '.tsx'
     ],
     alias: objectAssign({
       demo:  `${cwd}/demo`,

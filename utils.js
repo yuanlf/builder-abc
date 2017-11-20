@@ -65,16 +65,22 @@ const getBabelOptions = (config) => {
         "targets": {
           "browsers": [
             '>5%',
-            'last 4 versions',
+            'last 2 versions',
             'Firefox ESR',
             'ie > 8'
           ]
-        }
+        },
+        helpers: true,
+        polyfill: true,
+        regenerator: true,
+        // debug: true,
+        // Resolve the Babel runtime relative to the config.
+        moduleName: path.dirname(require.resolve('babel-runtime/package'))
       }],
       require.resolve('babel-preset-react')
     ],
     "plugins": [
-      // require.resolve("babel-plugin-transform-runtime"),
+      require.resolve("babel-plugin-transform-runtime"),
       require.resolve("babel-plugin-transform-class-properties"),
       require.resolve("babel-plugin-add-module-exports"),
       require.resolve("babel-plugin-transform-object-rest-spread")

@@ -1,6 +1,6 @@
 {
   "name": "builder-abc",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "一个基于webpack的构建器",
   "main": "index.js",
   "bin": {
@@ -33,6 +33,7 @@
   "homepage": "https://github.com/yuanlf/builder-abc#readme",
   "dependencies": {
     "autoprefixer": "^7.1.4",
+    "awesome-typescript-loader": "^3.4.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-plugin-add-module-exports": "^0.2.1",
