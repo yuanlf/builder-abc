@@ -7,6 +7,12 @@ const path = require('path')
 const objectAssign = require('object-assign')
 const _ = require('lodash')
 const fs = require('fs')
+const browsers = [
+  '>5%',
+  'last 2 versions',
+  'Firefox ESR',
+  'ie > 8'
+]
 
 const paths = {
   builderNodeModulePath: path.resolve(__dirname, './node_modules'),
@@ -28,7 +34,7 @@ const getAbcConfig = (() => {
     "alias": [],
     "externals": [],
     "babelOptions": {},
-    "htmlTemplateUrl": "",
+    "htmlTemplateUrl": path.resolve(__dirname, '.') + '/index.tmpl.html',
     "devtool": "eval-source-map",
     "proxy": {}
   }
@@ -63,12 +69,7 @@ const getBabelOptions = (config) => {
     "presets": [
       [require.resolve('babel-preset-env'), {
         "targets": {
-          "browsers": [
-            '>5%',
-            'last 2 versions',
-            'Firefox ESR',
-            'ie > 8'
-          ]
+          "browsers": browsers
         },
         helpers: true,
         polyfill: true,
@@ -95,26 +96,25 @@ const getBabelOptions = (config) => {
   }, getAbcConfig.babelOptions)
 }
 
+// IE9+,firefox,chorme等
 const getPostCssOptions = (config) => {
   return {
     plugins: [
       require('autoprefixer')({
-        browsers: [
-          '>5%',
-          'last 4 versions',
-          'Firefox ESR',
-          'ie > 8'
-        ]
+        browsers: browsers
       })
     ]
   }
 }
 
 const getDevEntry = (entry) => {
-  const arr = ['eventsource-polyfill', 'webpack-hot-middleware/client?noInfo=true&reload=true']
+  const arr = [
+    require.resolve('eventsource-polyfill'), 
+    require.resolve('webpack-hot-middleware/client')
+  ]
 
   if (_.isString(entry)) {
-    return { main: _.clone(arr).concat(entry) } 
+    return { app: _.clone(arr).concat(entry) } 
   }
 
   if (_.isObject(entry)) {
@@ -172,5 +172,6 @@ module.exports = {
   paths,
   getAbcConfig,
   getDevEntry,
-  getProxyConfig
+  getProxyConfig,
+  browsers
 }

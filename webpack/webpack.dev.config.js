@@ -64,9 +64,7 @@ plugins.push(
     'process.env.NODE_ENV': JSON.stringify('development')
   }), 
   new HtmlWebpackPlugin({
-    template: abcConfig.htmlTemplateUrl
-      ? abcConfig.htmlTemplateUrl
-      : path.resolve(__dirname, '..') + '/index.tmpl.html',
+    template: abcConfig.htmlTemplateUrl,
     inject: 'body'
   }), 
   new webpack.HotModuleReplacementPlugin(), 

@@ -86,12 +86,7 @@ module.exports = {
       options: {
         postcss: [
           autoprefixer({
-            browsers: [
-              '>1%',
-              'last 4 versions',
-              'Firefox ESR',
-              'ie > 8'
-            ]
+            browsers: utils.browsers
           })
         ],
         context: paths.appRootPath
