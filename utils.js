@@ -36,6 +36,7 @@ const getAbcConfig = (() => {
     "babelOptions": {},
     "htmlTemplateUrl": path.resolve(__dirname, '.') + '/index.tmpl.html',
     "devtool": "eval-source-map",
+    "isExtractCss": true,
     "proxy": {}
   }
   let abcConfig = null

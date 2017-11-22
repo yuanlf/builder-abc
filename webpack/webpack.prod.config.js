@@ -20,24 +20,55 @@ const alias = config.resolve.alias
 
 config.entry = JSON.stringify(abcConfig.entry) === '{}' ? { 'index': './src/index.js' } :  abcConfig.entry
 
-rules.push({
-  test: /\.css$/,
-  use: ExtractTextPlugin.extract({
-    fallback: 'style',
+// css 是否单独打包
+if (abcConfig.isExtractCss) {
+  rules.push({
+    test: /\.css$/,
+    use: ExtractTextPlugin.extract({
+      fallback: 'style',
+      use: [
+        'css'
+      ]
+    })
+  }, {
+    test: /\.less$/,
+    use: ExtractTextPlugin.extract({
+      fallback: 'style',
+      use: [
+        'css',
+        'less'
+      ]
+    })
+  })
+} else {
+  rules.push({
+    test: /\.css$/,
     use: [
-      'css'
+      'style',
+      'css', 
+      {
+        loader: 'postcss',
+        options: utils.getPostCssOptions()
+      }
+    ]
+  }, {
+    test: /\.less$/,
+    use: [
+      'style',
+      {
+        loader: 'css',
+        options: {
+          modules: false
+        }
+      },
+      'less', 
+      {
+        loader: 'postcss',
+        options: utils.getPostCssOptions()
+      }
     ]
   })
-}, {
-  test: /\.less$/,
-  use: ExtractTextPlugin.extract({
-    fallback: 'style',
-    use: [
-      'css',
-      'less'
-    ]
-  })
-})
+}
 
 // 接入 def 云构建，需要设置 def 构建器的输出目录
 if (argv.buildTo) {
