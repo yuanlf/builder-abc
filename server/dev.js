@@ -28,7 +28,7 @@ app.use(devMiddleware(compile, {
   noInfo: true,
   reload: true,
   stats: {
-		colors: true
+		colors: false
   },
   watchOptions: {
     aggregateTimeout: 300,
@@ -37,7 +37,7 @@ app.use(devMiddleware(compile, {
 }))
 
 app.use(hotMiddleware(compile, {
-  // log: console.log,
+  // log: false,
   // path: '/__webpack_hmr',
   // heartbeat: 10 * 1000
 }))

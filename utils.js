@@ -72,12 +72,13 @@ const getBabelOptions = (config) => {
         "targets": {
           "browsers": browsers
         },
-        helpers: true,
-        polyfill: true,
-        regenerator: true,
-        // debug: true,
+        // helpers: true,
+        // polyfill: true,
+        // regenerator: true,
+        "debug": false,
+        "useBuiltIns": true,
         // Resolve the Babel runtime relative to the config.
-        moduleName: path.dirname(require.resolve('babel-runtime/package'))
+        // moduleName: path.dirname(require.resolve('babel-runtime/package'))
       }],
       require.resolve('babel-preset-react')
     ],
@@ -111,7 +112,7 @@ const getPostCssOptions = (config) => {
 const getDevEntry = (entry) => {
   const arr = [
     require.resolve('eventsource-polyfill'), 
-    require.resolve('webpack-hot-middleware/client')
+    require.resolve('webpack-hot-middleware/client') + '?path=/__webpack_hmr&timeout=10000&reload=true'
   ]
 
   if (_.isString(entry)) {

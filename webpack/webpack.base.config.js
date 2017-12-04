@@ -96,8 +96,8 @@ module.exports = {
   ].concat(abcConfig.plugins),
   resolve: {
     modules: [
-      paths.builderNodeModulePath,
       paths.appNodeModulePath,
+      paths.builderNodeModulePath,
       'node_modules'
     ],
     extensions: [
@@ -111,7 +111,8 @@ module.exports = {
   resolveLoader: {
     modules: [
       paths.builderNodeModulePath,
-      paths.appNodeModulePath
+      paths.appNodeModulePath,
+      'node_modules'
     ],
     moduleExtensions: ['-loader'],
   }

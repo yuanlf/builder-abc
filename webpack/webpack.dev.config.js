@@ -23,7 +23,7 @@ const port = abcConfig.port
 // 没有配置 entry 的情况下，开发时默认启动 demo 环境，方便本地调试
 config.entry = JSON.stringify(abcConfig.entry) === '{}' ? { 'index': [
   require.resolve('eventsource-polyfill'), 
-  require.resolve('webpack-hot-middleware/client'), 
+  require.resolve('webpack-hot-middleware/client') + '?path=/__webpack_hmr&timeout=10000&reload=true', 
   './demo/index.js'
 ] } :  utils.getDevEntry(abcConfig.entry)
 
