@@ -1,6 +1,6 @@
 {
   "name": "builder-abc",
-  "version": "1.0.21",
+  "version": "1.0.22",
   "description": "一个基于webpack的构建器",
   "main": "index.js",
   "bin": {
@@ -72,5 +72,8 @@
     "style-loader": "^0.18.2",
     "webpack": "^3.6.0",
     "yargs": "^10.0.3"
+  },
+  "devDependencies": {
+    "cross-env": "^5.1.1"
   }
 }

@@ -37,7 +37,7 @@ program
           const filePath = require.resolve('../server/' + cmd)
           const env = (cmd === 'dev' ? 'NODE_ENV=development' : 'NODE_ENV=production')
           // 需要透传命令行参数
-          shell.exec(`${env} node ${filePath} ${process.argv.join(' ')}`)
+          shell.exec(`cross-env ${env} node ${filePath} ${process.argv.join(' ')}`)
           break
         default:
           break
